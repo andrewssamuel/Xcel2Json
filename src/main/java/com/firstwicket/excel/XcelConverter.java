@@ -1,5 +1,6 @@
 package com.firstwicket.excel;
 
+import java.io.*;
 import java.util.*;
 
 /**
@@ -8,7 +9,9 @@ import java.util.*;
 public interface XcelConverter {
 
     /* To parse the excel into java objects */
-    List excelParser(String path);
+    List excelParser(FileInputStream fileInputStream);
+
+    List excelParserByFile(String path);
 
     /* To get the Json String of the lists */
     String toJson(List list);

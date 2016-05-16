@@ -20,7 +20,8 @@ class XcelConverterImpl implements XcelConverter {
     Class<?> clazz = null;
     List<List> mList = new ArrayList<List>();
 
-    public List<List> excelParser(String xcelPath) {
+
+    public List<List> excelParserByFile(String xcelPath){
 
         try {
 
@@ -29,6 +30,14 @@ class XcelConverterImpl implements XcelConverter {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+
+        return excelParser(inputStream);
+
+    }
+
+    public List<List> excelParser(FileInputStream inputStream) {
+
+
 
         try {
             workbook = WorkbookFactory.create(inputStream);
@@ -190,8 +199,13 @@ class XcelConverterImpl implements XcelConverter {
 
             }
 
+            Random rand = new Random();
+            Integer randInteger = new Integer(rand.nextInt(50) + 1);
+
             clazz = PojoGenerator.generate(
-                    "com.firstwicket.Excel$" + sheetName, header);
+                    "com.firstwicket.Excel$" +randInteger.toString() + sheetName, header);
+
+
         }
 
 
