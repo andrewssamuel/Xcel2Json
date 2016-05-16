@@ -158,22 +158,22 @@ class XcelConverterImpl implements XcelConverter {
         switch (cell.getCellType()) {
 
             case 0:
-                clazz.getMethod("set" + headerInfo.get(cell.getColumnIndex()), StringBuffer.class).invoke(obj, new StringBuffer(Double.toString(cell.getNumericCellValue())));
+                clazz.getMethod("set" + headerInfo.get(cell.getColumnIndex()), String.class).invoke(obj, Double.toString(cell.getNumericCellValue()));
                 break;
             case 1:
-                clazz.getMethod("set" + headerInfo.get(cell.getColumnIndex()), StringBuffer.class).invoke(obj, new StringBuffer(cell.getStringCellValue()));
+                clazz.getMethod("set" + headerInfo.get(cell.getColumnIndex()), String.class).invoke(obj, cell.getStringCellValue());
                 break;
             case 2:
-                clazz.getMethod("set" + headerInfo.get(cell.getColumnIndex()), StringBuffer.class).invoke(obj, new StringBuffer(cell.getCellFormula()));
+                clazz.getMethod("set" + headerInfo.get(cell.getColumnIndex()), String.class).invoke(obj, cell.getCellFormula());
                 break;
             case 3:
-                clazz.getMethod("set" + headerInfo.get(cell.getColumnIndex()), StringBuffer.class).invoke(obj, new StringBuffer(""));
+                clazz.getMethod("set" + headerInfo.get(cell.getColumnIndex()), String.class).invoke(obj, "");
                 break;
             case 4:
-                clazz.getMethod("set" + headerInfo.get(cell.getColumnIndex()), StringBuffer.class).invoke(obj, new StringBuffer(Boolean.toString(cell.getBooleanCellValue())));
+                clazz.getMethod("set" + headerInfo.get(cell.getColumnIndex()), String.class).invoke(obj, Boolean.toString(cell.getBooleanCellValue()));
                 break;
             case 5:
-                clazz.getMethod("set" + headerInfo.get(cell.getColumnIndex()), StringBuffer.class).invoke(obj, new StringBuffer(Byte.toString(cell.getErrorCellValue())));
+                clazz.getMethod("set" + headerInfo.get(cell.getColumnIndex()), String.class).invoke(obj, Byte.toString(cell.getErrorCellValue()));
                 break;
         }
 
@@ -194,7 +194,7 @@ class XcelConverterImpl implements XcelConverter {
                 Cell cell = cellsIterator.next();
                 String headerValue = toCamelCase(cell.getStringCellValue().replace("'", "").replace(' ', '_'));
 
-                header.put(headerValue, StringBuffer.class);
+                header.put(headerValue, String.class);
                 headerInfo.add(headerValue);
 
             }
