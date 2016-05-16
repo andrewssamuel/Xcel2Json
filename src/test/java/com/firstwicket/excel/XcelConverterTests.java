@@ -24,7 +24,7 @@ public class XcelConverterTests {
     @Test
     public void verifyJsonString(){
         XcelConverter xcelConverter = XcelConverter.newInstance();
-        Assert.assertEquals(xcelConverter.toJson(xcelConverter.excelParserByFile("Movie.xlsx")), "[[{\"Movie\":\"Money Monster\",\"Release_date\":\"42503.0\"},{\"Movie\":\"Mother's Day\",\"Release_date\":\"42489.0\"}]]");
+        Assert.assertEquals(xcelConverter.toJson(xcelConverter.excelParserByFile("Movie.xlsx")), "[[{\"Movie\":\"Money Monster\",\"Release_date\":\"Fri May 13 00:00:00 PDT 2016\"},{\"Movie\":\"Mother's Day\",\"Release_date\":\"Fri Apr 29 00:00:00 PDT 2016\"}]]");
     }
 
     @Test
@@ -36,7 +36,7 @@ public class XcelConverterTests {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        Assert.assertEquals(xcelConverter.toJson(xcelConverter.excelParser(fileInputStream)), "[[{\"Movie\":\"Money Monster\",\"Release_date\":\"42503.0\"},{\"Movie\":\"Mother's Day\",\"Release_date\":\"42489.0\"}]]");
+        Assert.assertEquals(xcelConverter.toJson(xcelConverter.excelParser(fileInputStream)), "[[{\"Movie\":\"Money Monster\",\"Release_date\":\"Fri May 13 00:00:00 PDT 2016\"},{\"Movie\":\"Mother's Day\",\"Release_date\":\"Fri Apr 29 00:00:00 PDT 2016\"}]]");
     }
 
     @Test
@@ -49,7 +49,7 @@ public class XcelConverterTests {
             e.printStackTrace();
         }
 
-        Assert.assertEquals(xcelConverter.toJson(xcelConverter.excelParser(fileInputStream)), "[[{\"Rdate\":\"42489.0\",\"Film\":\"Mother's Day\"}],[{\"Movie\":\"Money Monster\",\"Release_date\":\"42503.0\"}]]");
+        Assert.assertEquals(xcelConverter.toJson(xcelConverter.excelParser(fileInputStream)), "[[{\"Rdate\":\"Fri Apr 29 00:00:00 PDT 2016\",\"Film\":\"Mother's Day\"}],[{\"Movie\":\"Money Monster\",\"Release_date\":\"Fri May 13 00:00:00 PDT 2016\"}]]");
 
     }
 

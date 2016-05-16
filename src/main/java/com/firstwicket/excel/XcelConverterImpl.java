@@ -2,11 +2,13 @@ package com.firstwicket.excel;
 
 import com.google.gson.*;
 import javassist.*;
+import org.apache.poi.hssf.usermodel.*;
 import org.apache.poi.openxml4j.exceptions.*;
 import org.apache.poi.ss.usermodel.*;
 
 import java.io.*;
 import java.lang.reflect.*;
+import java.text.*;
 import java.util.*;
 import java.util.stream.*;
 
@@ -96,6 +98,8 @@ class XcelConverterImpl implements XcelConverter {
 
                         Cell cell = cellsIterator.next();
 
+
+
                         try {
                             populatePOJO(cell, objectWrapper.getHeaderInfo(), objectWrapper.getaClass(), obj);
                         } catch (IllegalAccessException e) {
@@ -154,11 +158,13 @@ class XcelConverterImpl implements XcelConverter {
 
     private Object populatePOJO(Cell cell, List<String> headerInfo, Class<?> clazz, Object obj) throws IllegalAccessException, InstantiationException, NoSuchMethodException, InvocationTargetException {
 
-
         switch (cell.getCellType()) {
-
             case 0:
-                clazz.getMethod("set" + headerInfo.get(cell.getColumnIndex()), String.class).invoke(obj, Double.toString(cell.getNumericCellValue()));
+                if(DateUtil.isCellDateFormatted(cell)){
+                    clazz.getMethod("set" + headerInfo.get(cell.getColumnIndex()), String.class).invoke(obj, cell.getDateCellValue().toString());
+                }else{
+                    clazz.getMethod("set" + headerInfo.get(cell.getColumnIndex()), String.class).invoke(obj, Double.toString(cell.getNumericCellValue()));
+                }
                 break;
             case 1:
                 clazz.getMethod("set" + headerInfo.get(cell.getColumnIndex()), String.class).invoke(obj, cell.getStringCellValue());
@@ -175,7 +181,7 @@ class XcelConverterImpl implements XcelConverter {
             case 5:
                 clazz.getMethod("set" + headerInfo.get(cell.getColumnIndex()), String.class).invoke(obj, Byte.toString(cell.getErrorCellValue()));
                 break;
-        }
+           }
 
         return obj;
 
