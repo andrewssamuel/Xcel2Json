@@ -15,7 +15,7 @@ import java.util.stream.*;
  */
 class XcelConverterImpl implements XcelConverter {
 
-    FileInputStream inputStream = null;
+    InputStream inputStream = null;
     Workbook workbook = null;
     Class<?> clazz = null;
     List<List> mList = new ArrayList<List>();
@@ -35,7 +35,7 @@ class XcelConverterImpl implements XcelConverter {
 
     }
 
-    public List<List> excelParser(FileInputStream inputStream) {
+    public List<List> excelParser(InputStream inputStream) {
 
 
 

@@ -9,7 +9,7 @@ import java.util.*;
 public interface XcelConverter {
 
     /* To parse the excel into java objects */
-    List excelParser(FileInputStream fileInputStream);
+    List excelParser(InputStream fileInputStream);
 
     List excelParserByFile(String path);
 

@@ -42,7 +42,7 @@ public class XcelConverterTests {
     @Test
     public void verifyJsonStringForExcelWithMultipleSheets(){
         XcelConverter xcelConverter = XcelConverter.newInstance();
-        FileInputStream fileInputStream = null;
+        InputStream fileInputStream = null;
         try {
             fileInputStream = new FileInputStream(new File("Movie_Multiple.xlsx"));
         } catch (FileNotFoundException e) {
