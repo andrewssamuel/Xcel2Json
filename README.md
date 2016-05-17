@@ -3,7 +3,7 @@ Convert Any Excel into Json
 
 This is a tool that converts Excel files into JSON Stirng/Java Objects.
 
-Maven Dependencies
+Maven Dependency
 
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/cz.jirutka.rsql/rsql-parser/badge.svg)](http://search.maven.org/#artifactdetails%7Ccom.firstwicket%7CXcel2Json%7C1.0.1%7Cpom)
 
